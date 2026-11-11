@@ -1,8 +1,92 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿
+@{
+    ViewData["Title"] = "Inicio";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="inicio-principal">
+
+    <div class="bienvenida">
+        <span class="etiqueta-inicio">SISTEMA UNIVERSITARIO</span>
+
+        <h1>Bienvenido al Sistema de Matrícula</h1>
+
+        <p>
+            Administra la información académica de manera sencilla.
+            Selecciona el módulo al que deseas ingresar.
+        </p>
+    </div>
+
+    <div class="row g-4 mt-3">
+
+        <!-- CARRERAS -->
+        <div class="col-md-6 col-lg-4">
+            <div class="modulo-card">
+                <div class="modulo-icono">
+                    <i class="bi bi-mortarboard-fill"></i>
+                </div>
+                <h3>Carreras</h3>
+                <p>Consulta y administra las carreras universitarias.</p>
+                <a asp-controller="Carreras" asp-action="Index" class="btn btn-modulo">
+                    Ingresar <i class="bi bi-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- CURSOS -->
+        <div class="col-md-6 col-lg-4">
+            <div class="modulo-card">
+                <div class="modulo-icono">
+                    <i class="bi bi-book-half"></i>
+                </div>
+                <h3>Cursos</h3>
+                <p>Administra los cursos y sus respectivos créditos.</p>
+                <a asp-controller="Cursos" asp-action="Index" class="btn btn-modulo">
+                    Ingresar <i class="bi bi-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- ESTUDIANTES -->
+        <div class="col-md-6 col-lg-4">
+            <div class="modulo-card">
+                <div class="modulo-icono">
+                    <i class="bi bi-people-fill"></i>
+                </div>
+                <h3>Estudiantes</h3>
+                <p>Consulta y gestiona la información de los estudiantes.</p>
+                <a asp-controller="Estudiantes" asp-action="Index" class="btn btn-modulo">
+                    Ingresar <i class="bi bi-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- DOCENTES -->
+        <div class="col-md-6 col-lg-4">
+            <div class="modulo-card">
+                <div class="modulo-icono">
+                    <i class="bi bi-person-workspace"></i>
+                </div>
+                <h3>Docentes</h3>
+                <p>Administra los datos de los docentes universitarios.</p>
+                <a asp-controller="Docentes" asp-action="Index" class="btn btn-modulo">
+                    Ingresar <i class="bi bi-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- MATRÍCULAS -->
+        <div class="col-md-6 col-lg-4">
+            <div class="modulo-card">
+                <div class="modulo-icono">
+                    <i class="bi bi-clipboard-check-fill"></i>
+                </div>
+                <h3>Matrículas</h3>
+                <p>Gestiona las matrículas de los estudiantes.</p>
+                <a asp-controller="Matriculas" asp-action="Index" class="btn btn-modulo">
+                    Ingresar <i class="bi bi-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+
+    </div>
 </div>

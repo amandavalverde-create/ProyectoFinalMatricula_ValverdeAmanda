@@ -1,0 +1,43 @@
+@model IEnumerable<ProyectoFinalMatricula_ValverdeAmanda.Models.Carrera>
+
+@{
+    ViewData["Title"] = "Carreras";
+}
+
+<div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4">
+    <h1 class="mb-0">Carreras</h1>
+
+    <a asp-controller="Home" asp-action="Index" class="btn btn-secondary">
+        <i class="bi bi-house-door-fill"></i> Regresar al inicio
+    </a>
+</div>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Agregar nueva carrera</a>
+</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Nombre</td>
+                <td>@item.Descripcion</td>
+                <td>@(item.Estado ? "Activa" : "Inactiva")</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.CarreraId">Editar</a> |
+                    <a asp-action="Details" asp-route-id="@item.CarreraId">Detalles</a> |
+                    <a asp-action="Delete" asp-route-id="@item.CarreraId">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
