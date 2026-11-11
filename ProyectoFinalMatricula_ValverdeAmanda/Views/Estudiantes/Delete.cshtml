@@ -1,0 +1,24 @@
+﻿@model ProyectoFinalMatricula_ValverdeAmanda.Models.Estudiante
+
+@{
+    ViewData["Title"] = "Eliminar estudiante";
+}
+
+<h1>Eliminar estudiante</h1>
+
+<div class="card shadow-sm p-4">
+    <div class="alert alert-warning">
+        ¿Está seguro de que desea eliminar este estudiante?
+    </div>
+
+    <p><strong>Nombre:</strong> @Model.Nombre @Model.Apellidos</p>
+    <p><strong>Identificación:</strong> @Model.Identificacion</p>
+    <p><strong>Correo:</strong> @Model.Correo</p>
+    <p><strong>Carrera:</strong> @(Model.Carrera?.Nombre ?? "Sin carrera")</p>
+
+    <form asp-action="Delete" method="post">
+        <input type="hidden" asp-for="EstudianteId" />
+        <button type="submit" class="btn btn-danger">Confirmar eliminación</button>
+        <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
