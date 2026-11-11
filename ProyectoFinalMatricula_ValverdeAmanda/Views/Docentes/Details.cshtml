@@ -1,0 +1,31 @@
+
+@model ProyectoFinalMatricula_ValverdeAmanda.Models.Docente
+
+@{
+    ViewData["Title"] = "Detalles del docente";
+}
+
+<div class="modulo-card">
+    <h2>Información del docente</h2>
+    <hr />
+
+    <dl class="row">
+        <dt class="col-sm-3">Nombre</dt>
+        <dd class="col-sm-9">@Model.Nombre</dd>
+
+        <dt class="col-sm-3">Apellidos</dt>
+        <dd class="col-sm-9">@Model.Apellidos</dd>
+
+        <dt class="col-sm-3">Correo</dt>
+        <dd class="col-sm-9">@Model.Correo</dd>
+
+        <dt class="col-sm-3">Teléfono</dt>
+        <dd class="col-sm-9">@Model.Telefono</dd>
+
+        <dt class="col-sm-3">Estado</dt>
+        <dd class="col-sm-9">@(Model.Estado ? "Activo" : "Inactivo")</dd>
+    </dl>
+
+    <a asp-action="Edit" asp-route-id="@Model.DocenteId" class="btn btn-primary">Editar</a>
+    <a asp-action="Index" class="btn btn-secondary">Regresar</a>
+</div>

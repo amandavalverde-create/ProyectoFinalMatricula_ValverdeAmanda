@@ -1,8 +1,74 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Inicio";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="inicio-principal">
+
+    <div class="bienvenida text-center mb-5">
+        <span class="etiqueta-inicio">SISTEMA ACADÉMICO</span>
+        <h1 class="display-4 fw-bold mt-3">Sistema de Matrícula</h1>
+        <p class="lead">
+            Bienvenido. Desde aquí puedes administrar la información académica
+            y gestionar los procesos de matrícula.
+        </p>
+    </div>
+
+    <div class="row g-4">
+
+        <div class="col-md-6 col-lg-4">
+            <div class="modulo-card h-100 text-center">
+                <div class="modulo-icono">
+                    <i class="bi bi-mortarboard-fill"></i>
+                </div>
+                <h3>Carreras</h3>
+                <p>Administra las carreras disponibles en la institución.</p>
+                <a asp-controller="Carreras" asp-action="Index" class="btn btn-modulo">Ingresar</a>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="modulo-card h-100 text-center">
+                <div class="modulo-icono">
+                    <i class="bi bi-book-fill"></i>
+                </div>
+                <h3>Cursos</h3>
+                <p>Registra y consulta los cursos académicos.</p>
+                <a asp-controller="Cursos" asp-action="Index" class="btn btn-modulo">Ingresar</a>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="modulo-card h-100 text-center">
+                <div class="modulo-icono">
+                    <i class="bi bi-people-fill"></i>
+                </div>
+                <h3>Estudiantes</h3>
+                <p>Registra y administra la información de los estudiantes.</p>
+                <a asp-controller="Estudiantes" asp-action="Index" class="btn btn-modulo">Ingresar</a>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="modulo-card h-100 text-center">
+                <div class="modulo-icono">
+                    <i class="bi bi-person-workspace"></i>
+                </div>
+                <h3>Docentes</h3>
+                <p>Consulta y administra la información de los docentes.</p>
+                <a asp-controller="Docentes" asp-action="Index" class="btn btn-modulo">Ingresar</a>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="modulo-card h-100 text-center">
+                <div class="modulo-icono">
+                    <i class="bi bi-clipboard-check-fill"></i>
+                </div>
+                <h3>Matrículas</h3>
+                <p>Gestiona las matrículas de los estudiantes.</p>
+                <a asp-controller="Matriculas" asp-action="Index" class="btn btn-modulo">Ingresar</a>
+            </div>
+        </div>
+
+    </div>
 </div>

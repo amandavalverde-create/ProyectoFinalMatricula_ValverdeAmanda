@@ -1,0 +1,31 @@
+﻿@model ProyectoFinalMatricula_ValverdeAmanda.Models.Estudiante
+
+@{
+    ViewData["Title"] = "Detalles del estudiante";
+}
+
+<h1>Detalles del estudiante</h1>
+
+<div class="card shadow-sm p-4">
+    <dl class="row">
+        <dt class="col-sm-3">Nombre completo</dt>
+        <dd class="col-sm-9">@Model.Nombre @Model.Apellidos</dd>
+
+        <dt class="col-sm-3">Identificación</dt>
+        <dd class="col-sm-9">@Model.Identificacion</dd>
+
+        <dt class="col-sm-3">Correo</dt>
+        <dd class="col-sm-9">@Model.Correo</dd>
+
+        <dt class="col-sm-3">Teléfono</dt>
+        <dd class="col-sm-9">@Model.Telefono</dd>
+
+        <dt class="col-sm-3">Carrera</dt>
+        <dd class="col-sm-9">@(Model.Carrera?.Nombre ?? "Sin carrera")</dd>
+    </dl>
+
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model.EstudianteId" class="btn btn-primary">Editar</a>
+        <a asp-action="Index" class="btn btn-secondary">Volver</a>
+    </div>
+</div>

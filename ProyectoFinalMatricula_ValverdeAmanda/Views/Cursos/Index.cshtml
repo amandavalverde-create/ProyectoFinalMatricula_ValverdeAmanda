@@ -1,0 +1,45 @@
+
+@model IEnumerable<ProyectoFinalMatricula_ValverdeAmanda.Models.Curso>
+
+@{
+    ViewData["Title"] = "Cursos";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>Cursos</h1>
+    <a asp-controller="Home" asp-action="Index" class="btn btn-secondary">Inicio</a>
+</div>
+
+<a asp-action="Create" class="btn btn-primary mb-3">Agregar nuevo curso</a>
+
+<div class="table-responsive">
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Créditos</th>
+                <th>Carrera</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Nombre</td>
+                    <td>@item.Descripcion</td>
+                    <td>@item.Creditos</td>
+                    <td>@item.Carrera?.Nombre</td>
+                    <td>@(item.Estado ? "Activo" : "Inactivo")</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.CursoId">Editar</a> |
+                        <a asp-action="Details" asp-route-id="@item.CursoId">Detalles</a> |
+                        <a asp-action="Delete" asp-route-id="@item.CursoId">Eliminar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

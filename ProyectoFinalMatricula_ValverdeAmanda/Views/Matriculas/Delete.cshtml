@@ -1,0 +1,22 @@
+
+@model ProyectoFinalMatricula_ValverdeAmanda.Models.Matricula
+
+@{
+    ViewData["Title"] = "Eliminar matrícula";
+}
+
+<div class="modulo-card">
+    <h2>Eliminar matrícula</h2>
+    <p>¿Deseas eliminar este registro?</p>
+    <hr />
+
+    <p><strong>Estudiante:</strong> @Model.Estudiante?.Nombre @Model.Estudiante?.Apellidos</p>
+    <p><strong>Curso:</strong> @Model.Curso?.Nombre</p>
+    <p><strong>Fecha:</strong> @Model.FechaMatricula.ToString("dd/MM/yyyy")</p>
+
+    <form asp-action="Delete" method="post">
+        <input type="hidden" asp-for="MatriculaId" />
+        <button type="submit" class="btn btn-danger">Eliminar</button>
+        <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>

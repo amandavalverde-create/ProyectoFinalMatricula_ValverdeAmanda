@@ -1,0 +1,22 @@
+
+@model ProyectoFinalMatricula_ValverdeAmanda.Models.Curso
+
+@{
+    ViewData["Title"] = "Eliminar curso";
+}
+
+<div class="modulo-card">
+    <h2>Eliminar curso</h2>
+    <p>¿Estás seguro de que deseas eliminar este curso?</p>
+    <hr />
+
+    <p><strong>Nombre:</strong> @Model.Nombre</p>
+    <p><strong>Créditos:</strong> @Model.Creditos</p>
+    <p><strong>Carrera:</strong> @Model.Carrera?.Nombre</p>
+
+    <form asp-action="Delete" method="post">
+        <input type="hidden" asp-for="CursoId" />
+        <button type="submit" class="btn btn-danger">Eliminar</button>
+        <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
