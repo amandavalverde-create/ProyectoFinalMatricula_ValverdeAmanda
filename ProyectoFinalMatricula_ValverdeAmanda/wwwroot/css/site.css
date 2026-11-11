@@ -1,31 +1,429 @@
+
+
+/* =========================================
+   ESTILOS GENERALES
+========================================= */
+
 html {
-  font-size: 14px;
+    font-size: 14px;
+    position: relative;
+    min-height: 100%;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
+:root {
+    --azul-principal: #123C55;
+    --azul-secundario: #1D607D;
+    --turquesa: #27B8D8;
+    --turquesa-hover: #159BB9;
+    --fondo: #F2F7FA;
+    --blanco: #FFFFFF;
+    --texto: #34495E;
+    --borde: #DCE7ED;
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+    background: linear-gradient(120deg, #F2F7FA, #E5F2F7, #D8EFF5, #F2F7FA);
+    background-size: 300% 300%;
+    animation: fondoMovimiento 18s ease infinite;
+    color: var(--texto);
+    font-family: 'Segoe UI', Arial, sans-serif;
+    overflow-x: hidden;
+    position: relative;
 }
 
-.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
-  color: var(--bs-secondary-color);
-  text-align: end;
+/* =========================================
+   ANIMACIÓN DEL FONDO
+========================================= */
+
+@keyframes fondoMovimiento {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
-.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
-  text-align: start;
+/* Círculos decorativos flotantes */
+
+body::before,
+body::after {
+    content: "";
+    position: fixed;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: -1;
+    filter: blur(2px);
+}
+
+body::before {
+    width: 350px;
+    height: 350px;
+    background: rgba(39, 184, 216, 0.13);
+    top: 10%;
+    left: -120px;
+    animation: circuloFlotante 16s ease-in-out infinite alternate;
+}
+
+body::after {
+    width: 420px;
+    height: 420px;
+    background: rgba(29, 96, 125, 0.10);
+    bottom: 5%;
+    right: -150px;
+    animation: circuloFlotante 20s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes circuloFlotante {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    50% {
+        transform: translate(60px, -45px) scale(1.12);
+    }
+
+    100% {
+        transform: translate(-25px, 50px) scale(0.95);
+    }
+}
+
+/* =========================================
+   BARRA DE NAVEGACIÓN
+========================================= */
+
+.navbar {
+    background: linear-gradient(100deg, var(--azul-principal), var(--azul-secundario)) !important;
+    box-shadow: 0 4px 15px rgba(18, 60, 85, 0.18);
+    padding: 14px 0;
+}
+
+    .navbar .navbar-brand {
+        color: var(--blanco) !important;
+        font-weight: 700;
+        letter-spacing: 0.4px;
+    }
+
+    .navbar .nav-link {
+        color: #EAF7FC !important;
+        font-weight: 500;
+        transition: 0.3s ease;
+    }
+
+        .navbar .nav-link:hover {
+            color: var(--turquesa) !important;
+        }
+
+/* =========================================
+   CONTENIDO PRINCIPAL
+========================================= */
+
+.container {
+    max-width: 1200px;
+}
+
+main {
+    padding-top: 30px;
+    padding-bottom: 35px;
+    position: relative;
+    z-index: 1;
+}
+
+h1, h2, h3 {
+    color: var(--azul-principal);
+    font-weight: 700;
+}
+
+h1 {
+    margin-bottom: 25px;
+    letter-spacing: -0.5px;
+}
+
+/* =========================================
+   TARJETAS Y FORMULARIOS
+========================================= */
+
+.card {
+    border: 1px solid var(--borde);
+    border-radius: 16px;
+    background: var(--blanco);
+    box-shadow: 0 6px 22px rgba(18, 60, 85, 0.08);
+    padding: 20px;
+}
+
+.form-control,
+.form-select {
+    border: 1px solid var(--borde);
+    border-radius: 9px;
+    padding: 10px 12px;
+}
+
+    .form-control:focus,
+    .form-select:focus {
+        border-color: var(--turquesa);
+        box-shadow: 0 0 0 0.2rem rgba(39, 184, 216, 0.18);
+    }
+
+.form-label {
+    color: var(--azul-principal);
+    font-weight: 600;
+}
+
+/* =========================================
+   BOTONES
+========================================= */
+
+.btn {
+    border-radius: 9px;
+    padding: 9px 18px;
+    font-weight: 600;
+    transition: all 0.25s ease;
+}
+
+.btn-primary {
+    background: var(--turquesa);
+    border-color: var(--turquesa);
+    color: #FFFFFF;
+}
+
+    .btn-primary:hover {
+        background: var(--turquesa-hover);
+        border-color: var(--turquesa-hover);
+        color: #FFFFFF;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 10px rgba(39, 184, 216, 0.25);
+    }
+
+.btn-secondary {
+    background: var(--azul-principal);
+    border-color: var(--azul-principal);
+}
+
+    .btn-secondary:hover {
+        background: var(--azul-secundario);
+        border-color: var(--azul-secundario);
+    }
+
+/* =========================================
+   TABLAS
+========================================= */
+
+.table {
+    background: var(--blanco);
+    border-radius: 12px;
+    overflow: hidden;
+    vertical-align: middle;
+}
+
+    .table thead th {
+        background: var(--azul-principal);
+        color: var(--blanco);
+        padding: 15px;
+        border: none;
+        font-weight: 600;
+    }
+
+    .table tbody td {
+        padding: 13px 15px;
+        border-color: var(--borde);
+    }
+
+.table-striped > tbody > tr:nth-of-type(odd) > * {
+    background-color: #F4FAFC;
+}
+
+.table tbody tr:hover > * {
+    background-color: #E5F7FB;
+}
+
+/* =========================================
+   ENLACES
+========================================= */
+
+a {
+    color: var(--azul-secundario);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+    a:hover {
+        color: var(--turquesa-hover);
+    }
+
+/* =========================================
+   MENSAJES Y VALIDACIONES
+========================================= */
+
+.text-danger,
+.field-validation-error {
+    color: #D64545 !important;
+}
+
+.validation-summary-errors {
+    color: #D64545;
+}
+
+/* =========================================
+   PIE DE PÁGINA
+========================================= */
+
+.footer {
+    background: var(--azul-principal);
+    color: #EAF7FC;
+    padding: 15px 0;
+    border-top: none;
+}
+
+    .footer a {
+        color: var(--turquesa);
+    }
+
+/* =========================================
+   EFECTO DE ENFOQUE
+========================================= */
+
+.btn:focus,
+.btn:active:focus,
+.btn-link.nav-link:focus,
+.form-control:focus,
+.form-check-input:focus {
+    box-shadow: 0 0 0 0.15rem #FFFFFF, 0 0 0 0.3rem var(--turquesa);
+}
+
+/* =========================================
+   ACCESIBILIDAD: RESPETAR MENOS MOVIMIENTO
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+    body,
+    body::before,
+    body::after {
+        animation: none;
+    }
+
+    .btn {
+        transition: none;
+    }
+}
+
+/* =========================================
+   PANTALLA PRINCIPAL - MENÚ DE MÓDULOS
+========================================= */
+
+.inicio-principal {
+    padding: 25px 10px 45px;
+}
+
+.bienvenida {
+    text-align: center;
+    padding: 35px 15px;
+}
+
+.etiqueta-inicio {
+    display: inline-block;
+    background: rgba(39, 184, 216, 0.15);
+    color: #1D607D;
+    padding: 8px 18px;
+    border-radius: 30px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+}
+
+.bienvenida h1 {
+    font-size: clamp(28px, 4vw, 42px);
+    margin-bottom: 15px;
+}
+
+.bienvenida p {
+    font-size: 17px;
+    color: #526675;
+    max-width: 650px;
+    margin: 0 auto;
+    line-height: 1.7;
+}
+
+.modulo-card {
+    height: 100%;
+    min-height: 260px;
+    background: rgba(255, 255, 255, 0.94);
+    border: 1px solid #DCE7ED;
+    border-radius: 18px;
+    padding: 28px 22px;
+    text-align: center;
+    box-shadow: 0 6px 22px rgba(18, 60, 85, 0.08);
+    transition: all 0.3s ease;
+}
+
+    .modulo-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 14px 30px rgba(18, 60, 85, 0.15);
+        border-color: #27B8D8;
+    }
+
+.modulo-icono {
+    width: 70px;
+    height: 70px;
+    margin: 0 auto 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #123C55, #27B8D8);
+    color: white;
+    border-radius: 20px;
+    font-size: 30px;
+}
+
+.modulo-card h3 {
+    font-size: 22px;
+    margin-bottom: 12px;
+}
+
+.modulo-card p {
+    color: #687C89;
+    min-height: 48px;
+    line-height: 1.5;
+}
+
+.btn-modulo {
+    background: #27B8D8;
+    color: white !important;
+    border: none;
+    border-radius: 9px;
+    padding: 10px 22px;
+    font-weight: 600;
+    margin-top: 10px;
+    transition: all 0.3s ease;
+}
+
+    .btn-modulo:hover {
+        background: #159BB9;
+        color: white !important;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 12px rgba(39, 184, 216, 0.25);
+    }
+
+@media (prefers-reduced-motion: reduce) {
+    .modulo-card,
+    .btn-modulo {
+        transition: none;
+    }
+
+        .modulo-card:hover,
+        .btn-modulo:hover {
+            transform: none;
+        }
 }

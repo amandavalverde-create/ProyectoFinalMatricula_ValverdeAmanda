@@ -4,147 +4,153 @@ using Microsoft.EntityFrameworkCore;
 using ProyectoFinalMatricula_ValverdeAmanda.Models;
 using ProyectoFinalMatricula_ValverdeAmanda.Data;
 
-public class CarrerasController : Controller
+namespace ProyectoFinalMatricula_ValverdeAmanda.Controllers
 {
-    private readonly ApplicationDbContext _context;
-
-    public CarrerasController(ApplicationDbContext context)
+    public class CarrerasController : Controller
     {
-        _context = context;
-    }
+        private readonly ApplicationDbContext _context;
 
-    // GET: CARRERAS
-    public async Task<IActionResult> Index()    
-    {
-        return View(await _context.Carreras.ToListAsync());
-    }
-
-    // GET: CARRERAS/Details/5
-    public async Task<IActionResult> Details(int? carreraid)
-    {
-        if (carreraid == null)
+        public CarrerasController(ApplicationDbContext context)
         {
-            return NotFound();
+            _context = context;
         }
 
-        var carrera = await _context.Carreras
-            .FirstOrDefaultAsync(m => m.CarreraId == carreraid);
-        if (carrera == null)
+        // GET: Carreras
+        public async Task<IActionResult> Index()
         {
-            return NotFound();
+            var carreras = await _context.Carreras.ToListAsync();
+            return View(carreras);
         }
 
-        return View(carrera);
-    }
-
-    // GET: CARRERAS/Create
-    public IActionResult Create()
-    {
-        return View();
-    }
-
-    // POST: CARRERAS/Create
-    // To protect from overposting attacks, enable the specific properties you want to bind to.
-    // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-    [HttpPost]
-    [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Create([Bind("CarreraId,Nombre,Descripcion,Estado")] Carrera carrera)
-    {
-        if (ModelState.IsValid)
+        // GET: Carreras/Details/5
+        public async Task<IActionResult> Details(int? id)
         {
-            _context.Add(carrera);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-        return View(carrera);
-    }
-
-    // GET: CARRERAS/Edit/5
-    public async Task<IActionResult> Edit(int? carreraid)
-    {
-        if (carreraid == null)
-        {
-            return NotFound();
-        }
-
-        var carrera = await _context.Carreras.FindAsync(carreraid);
-        if (carrera == null)
-        {
-            return NotFound();
-        }
-        return View(carrera);
-    }
-
-    // POST: CARRERAS/Edit/5
-    // To protect from overposting attacks, enable the specific properties you want to bind to.
-    // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-    [HttpPost]
-    [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Edit(int? carreraid, [Bind("CarreraId,Nombre,Descripcion,Estado")] Carrera carrera)
-    {
-        if (carreraid != carrera.CarreraId)
-        {
-            return NotFound();
-        }
-
-        if (ModelState.IsValid)
-        {
-            try
+            if (id == null)
             {
-                _context.Update(carrera);
-                await _context.SaveChangesAsync();
+                return NotFound();
             }
-            catch (DbUpdateConcurrencyException)
+
+            var carrera = await _context.Carreras
+                .FirstOrDefaultAsync(m => m.CarreraId == id);
+
+            if (carrera == null)
             {
-                if (!CarreraExists(carrera.CarreraId))
+                return NotFound();
+            }
+
+            return View(carrera);
+        }
+
+        // GET: Carreras/Create
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        // POST: Carreras/Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("CarreraId,Nombre,Descripcion,Estado")] Carrera carrera)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Add(carrera);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+
+            return View(carrera);
+        }
+
+        // GET: Carreras/Edit/5
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var carrera = await _context.Carreras.FindAsync(id);
+
+            if (carrera == null)
+            {
+                return NotFound();
+            }
+
+            return View(carrera);
+        }
+
+        // POST: Carreras/Edit/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, [Bind("CarreraId,Nombre,Descripcion,Estado")] Carrera carrera)
+        {
+            if (id != carrera.CarreraId)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
                 {
-                    return NotFound();
+                    _context.Update(carrera);
+                    await _context.SaveChangesAsync();
                 }
-                else
+                catch (DbUpdateConcurrencyException)
                 {
+                    if (!CarreraExists(carrera.CarreraId))
+                    {
+                        return NotFound();
+                    }
+
                     throw;
                 }
+
+                return RedirectToAction(nameof(Index));
             }
+
+            return View(carrera);
+        }
+
+        // GET: Carreras/Delete/5
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var carrera = await _context.Carreras
+                .FirstOrDefaultAsync(m => m.CarreraId == id);
+
+            if (carrera == null)
+            {
+                return NotFound();
+            }
+
+            return View(carrera);
+        }
+
+        // POST: Carreras/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var carrera = await _context.Carreras.FindAsync(id);
+
+            if (carrera != null)
+            {
+                _context.Carreras.Remove(carrera);
+                await _context.SaveChangesAsync();
+            }
+
             return RedirectToAction(nameof(Index));
         }
-        return View(carrera);
-    }
 
-    // GET: CARRERAS/Delete/5
-    public async Task<IActionResult> Delete(int? carreraid)
-    {
-        if (carreraid == null)
+        private bool CarreraExists(int id)
         {
-            return NotFound();
+            return _context.Carreras.Any(e => e.CarreraId == id);
         }
-
-        var carrera = await _context.Carreras
-            .FirstOrDefaultAsync(m => m.CarreraId == carreraid);
-        if (carrera == null)
-        {
-            return NotFound();
-        }
-
-        return View(carrera);
-    }
-
-    // POST: CARRERAS/Delete/5
-    [HttpPost, ActionName("Delete")]
-    [ValidateAntiForgeryToken]
-    public async Task<IActionResult> DeleteConfirmed(int? carreraid)
-    {
-        var carrera = await _context.Carreras.FindAsync(carreraid);
-        if (carrera != null)
-        {
-            _context.Carreras.Remove(carrera);
-        }
-
-        await _context.SaveChangesAsync();
-        return RedirectToAction(nameof(Index));
-    }
-
-    private bool CarreraExists(int? carreraid)
-    {
-        return _context.Carreras.Any(e => e.CarreraId == carreraid);
     }
 }

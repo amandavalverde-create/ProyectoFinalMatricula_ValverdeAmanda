@@ -1,0 +1,57 @@
+﻿@model ProyectoFinalMatricula_ValverdeAmanda.Models.Curso
+
+@{
+    ViewData["Title"] = "Detalles del curso";
+}
+
+<div class="mb-4">
+    <h1>Detalles del curso</h1>
+    <p class="text-muted">Información completa del curso seleccionado.</p>
+</div>
+
+<div class="row">
+    <div class="col-md-7">
+        <div class="card shadow-sm p-4">
+
+            <dl class="row">
+                <dt class="col-sm-4">Código del curso</dt>
+                <dd class="col-sm-8">@Model.CursoId</dd>
+
+                <dt class="col-sm-4">Nombre</dt>
+                <dd class="col-sm-8">@Model.Nombre</dd>
+
+                <dt class="col-sm-4">Descripción</dt>
+                <dd class="col-sm-8">@Model.Descripcion</dd>
+
+                <dt class="col-sm-4">Créditos</dt>
+                <dd class="col-sm-8">@Model.Creditos</dd>
+
+                <dt class="col-sm-4">Carrera</dt>
+                <dd class="col-sm-8">@(Model.Carrera?.Nombre ?? "Sin carrera")</dd>
+
+                <dt class="col-sm-4">Estado</dt>
+                <dd class="col-sm-8">
+                    @if (Model.Estado)
+                    {
+                        <span class="badge bg-success">Activo</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-secondary">Inactivo</span>
+                    }
+                </dd>
+            </dl>
+
+            <div class="mt-3">
+                <a asp-action="Edit" asp-route-id="@Model.CursoId" class="btn btn-primary">
+                    <i class="bi bi-pencil-fill"></i> Editar
+                </a>
+
+                <a asp-action="Index" class="btn btn-secondary">
+                    Volver a cursos
+                </a>
+            </div>
+
+        </div>
+    </div>
+</div>
