@@ -1,0 +1,49 @@
+
+@model ProyectoFinalMatricula_ValverdeAmanda.Models.Matricula
+
+@{
+    ViewData["Title"] = "Registrar matrícula";
+}
+
+<div class="modulo-card">
+    <h2>Registrar nueva matrícula</h2>
+    <hr />
+
+    <form asp-action="Create" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="mb-3">
+            <label asp-for="EstudianteId" class="form-label">Estudiante</label>
+            <select asp-for="EstudianteId" asp-items="ViewBag.Estudiantes" class="form-select">
+                <option value="">Seleccione un estudiante</option>
+            </select>
+            <span asp-validation-for="EstudianteId" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="CursoId" class="form-label">Curso</label>
+            <select asp-for="CursoId" asp-items="ViewBag.Cursos" class="form-select">
+                <option value="">Seleccione un curso</option>
+            </select>
+            <span asp-validation-for="CursoId" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="FechaMatricula" class="form-label">Fecha de matrícula</label>
+            <input asp-for="FechaMatricula" type="date" class="form-control" />
+            <span asp-validation-for="FechaMatricula" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Estado" class="form-label">Estado</label>
+            <select asp-for="Estado" class="form-select">
+                <option value="Activa">Activa</option>
+                <option value="Pendiente">Pendiente</option>
+                <option value="Cancelada">Cancelada</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Guardar matrícula</button>
+        <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>

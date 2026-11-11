@@ -1,0 +1,20 @@
+
+@model ProyectoFinalMatricula_ValverdeAmanda.Models.Curso
+
+@{
+    ViewData["Title"] = "Detalles del curso";
+}
+
+<div class="modulo-card">
+    <h2>Detalles del curso</h2>
+    <hr />
+
+    <p><strong>Nombre:</strong> @Model.Nombre</p>
+    <p><strong>Descripción:</strong> @Model.Descripcion</p>
+    <p><strong>Créditos:</strong> @Model.Creditos</p>
+    <p><strong>Carrera:</strong> @Model.Carrera?.Nombre</p>
+    <p><strong>Estado:</strong> @(Model.Estado ? "Activo" : "Inactivo")</p>
+
+    <a asp-action="Edit" asp-route-id="@Model.CursoId" class="btn btn-primary">Editar</a>
+    <a asp-action="Index" class="btn btn-secondary">Regresar</a>
+</div>

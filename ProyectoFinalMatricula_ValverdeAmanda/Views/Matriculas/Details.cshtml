@@ -1,0 +1,19 @@
+
+@model ProyectoFinalMatricula_ValverdeAmanda.Models.Matricula
+
+@{
+    ViewData["Title"] = "Detalles de matrícula";
+}
+
+<div class="modulo-card">
+    <h2>Detalles de matrícula</h2>
+    <hr />
+
+    <p><strong>Estudiante:</strong> @Model.Estudiante?.Nombre @Model.Estudiante?.Apellidos</p>
+    <p><strong>Curso:</strong> @Model.Curso?.Nombre</p>
+    <p><strong>Fecha:</strong> @Model.FechaMatricula.ToString("dd/MM/yyyy")</p>
+    <p><strong>Estado:</strong> @Model.Estado</p>
+
+    <a asp-action="Edit" asp-route-id="@Model.MatriculaId" class="btn btn-primary">Editar</a>
+    <a asp-action="Index" class="btn btn-secondary">Regresar</a>
+</div>
